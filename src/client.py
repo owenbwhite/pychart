@@ -137,6 +137,9 @@ class Chartmetric(object):
         # trid = self._get_id('track', track_id)
         return self._get('track/' + track_id)
 
+    def search(self, query):
+        return self._get('search?q=' + query)
+
     def _get_id(self, type, id):
         fields = id.split(':')
         if len(fields) >= 3:
