@@ -1,3 +1,7 @@
 *config.txt
 get_token.txt
+<<<<<<< HEAD
 *config.py
+=======
+*.csv
+>>>>>>> 170180209780703472e1c7122896ebd35e6d20cd
