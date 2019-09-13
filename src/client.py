@@ -3,6 +3,8 @@ import sys
 import json
 import time
 
+
+
 class ChartmetricException(Exception):
 
     def __init__(self, http_status, code, msg, headers=None):
@@ -16,7 +18,6 @@ class ChartmetricException(Exception):
     def __str__(self):
         return 'http status: {0}, code:{1} - {2}'.format(
             self.http_status, self.code, self.msg)
-
 
 class Chartmetric(object):
 
@@ -37,12 +38,17 @@ class Chartmetric(object):
         self.client_credentials_manager = client_credentials_manager
         self.proxies = proxies
         self.requests_timeout = requests_timeout
+        self.request_queue = []
+
 
         if isinstance(requests_session, requests.Session):
             self._session = requests.Session()
         else:
             from requests import api
             self._session = api
+
+
+
 
     def _auth_headers(self):
         if self._auth:
@@ -72,7 +78,6 @@ class Chartmetric(object):
                                   proxies=self.proxies,
                                   **args)
 
-
         if self.trace:
             print()
             print('headers', headers)
@@ -94,7 +99,6 @@ class Chartmetric(object):
             results = r.json()
             if self.trace:
                 print('RESP', results)
-            print()
             return results
         else:
             return None
@@ -133,12 +137,18 @@ class Chartmetric(object):
                     delay += 1
                 else:
                     raise
+
+    def asynchronous():
+        threads = [gevent.spawn(task, i) for i in xrange(10)]
+        gevent.joinall(threads)
+
     def track(self, track_id):
         # trid = self._get_id('track', track_id)
         return self._get('track/' + track_id)
 
     def search(self, query):
         return self._get('search?q=' + query)
+
 
     def _get_id(self, type, id):
         fields = id.split(':')

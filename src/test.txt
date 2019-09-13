@@ -1,0 +1,1 @@
+{"token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NTE1NzksInRpbWVzdGFtcCI6MTU2ODMzMzg3NTA4NiwiaWF0IjoxNTY4MzMzODc1LCJleHAiOjE1NjgzMzc0NzV9.w7ko3dR4ZSMyx-jTy2OtzGUwNN2kuBHnCFxkxlhUzso","expires_in":3600,"refresh_token":"HdgugibJsxnbiAvevVcZO4SyVVu0TJMirWjLD2kfEAOJPhTqufIyeNur9t0lEXUg","scope":"api"}
