@@ -1,7 +1,7 @@
 import requests
 import sys
 import json
-import time
+
 
 class ChartmetricException(Exception):
 
@@ -23,7 +23,6 @@ class Chartmetric(object):
     trace = False
     trace_out = False
     max_get_retries = 10
-
     # Constructor
     def __init__(self, auth = None,
                  requests_session = True,
@@ -72,7 +71,6 @@ class Chartmetric(object):
                                   proxies=self.proxies,
                                   **args)
 
-
         if self.trace:
             print()
             print('headers', headers)
@@ -94,7 +92,6 @@ class Chartmetric(object):
             results = r.json()
             if self.trace:
                 print('RESP', results)
-            print()
             return results
         else:
             return None
@@ -134,6 +131,7 @@ class Chartmetric(object):
                 else:
                     raise
     def track(self, track_id):
+
         # trid = self._get_id('track', track_id)
         return self._get('track/' + track_id)
 
