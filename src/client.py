@@ -7,7 +7,7 @@ class ChartmetricException(Exception):
 
     def __init__(self, http_status, code, msg, headers=None):
 
-        
+
         self.http_status = http_status
         self.code = code
         self.msg = msg
@@ -132,27 +132,50 @@ class Chartmetric(object):
                     delay += 1
                 else:
                     raise
+
+# Artist Socials
+    def artist(self, artist_id):
+        return self._get('artist/' + "/" + artist_id)
+
+    def socials(self, artist_id):
+        return self._get('artist/' + "/" + id + "/urls")
+
+    def artist_charts(self, artist_id, chartType)
+        return self._get('artist/' + "/" + artist_id + "/" + chartType + "/charts") 
+
+# Track Data and Stuff
     def track(self, track_id):
         return self._get('track/' + track_id)
 
     def search(self, query):
         return self._get('search?q=' + query)
 
-    def _get_id(self, type, id):
-        fields = id.split(':')
-        if len(fields) >= 3:
-            if type != fields[-2]:
-                self._warn('expected id of type %s but found type %s %s',
-                           type, fields[-2], id)
-            return fields[-1]
-        fields = id.split('/')
-        if len(fields) >= 3:
-            itype = fields[-2]
-            if type != itype:
-                self._warn('expected id of type %s but found type %s %s',
-                           type, itype, id)
-            return fields[-1]
-        return id
+    def track_charts(self, track_id, platform):
+        return self._get('track/' + track_id + "/" + platform + "/charts")
+
+    def track_stats(self, track_id, platform):
+        return self._get('track/' + track_id + "/" + platform + "/stats")
+
+# Playlist Data and Stuff
+    def playlist(self, platform, playlist_id):
+        return self._get('playlist/' + platform + "/" + playlist_id)
+
+    def playlist_evolution(self, platform, playlist_id):
+        return self._get('playlist/' + platform + "/" + playlist_id + "/evolution")
+
+    def playlist_tracks(self, platform, playlist_id, span='current'):
+        return self._get('playlist/' + platform + "/" + span + "/tracks")
+
+
+# Curator Data
+    def curator(self, platform, curator_id):
+        return self._get('curator/' + platform + "/" + curator_id)
+
+    def curator_list(self, platform):
+        return self._get("curator/"  + platform + "/lists" )
+
+
+
 
     def _warn(self, msg, *args):
         print('warning:' + msg.format(*args), file=sys.stderr)
