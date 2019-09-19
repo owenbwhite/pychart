@@ -6,6 +6,8 @@ import json
 class ChartmetricException(Exception):
 
     def __init__(self, http_status, code, msg, headers=None):
+
+        
         self.http_status = http_status
         self.code = code
         self.msg = msg
@@ -131,8 +133,6 @@ class Chartmetric(object):
                 else:
                     raise
     def track(self, track_id):
-
-        # trid = self._get_id('track', track_id)
         return self._get('track/' + track_id)
 
     def search(self, query):
