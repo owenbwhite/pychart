@@ -140,7 +140,7 @@ class Chartmetric(object):
     def socials(self, artist_id):
         return self._get('artist/' + "/" + id + "/urls")
 
-    def artist_charts(self, artist_id, chartType)
+    def artist_charts(self, artist_id, chartType):
         return self._get('artist/' + "/" + artist_id + "/" + chartType + "/charts") 
 
 # Track Data and Stuff
